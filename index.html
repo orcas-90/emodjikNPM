@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input class="emoji-input" />
+    <button id="emoji-trigger">Emoji</button>
+  </body>
+  <script type="module">
+    import { EmojiButton } from './node_modules/@joeattardi/emoji-button/dist/index.js';
+
+    const picker = new EmojiButton();
+    const trigger = document.querySelector('#emoji-trigger');
+    const emojiInput = document.querySelector('.emoji-input');
+
+    picker.on('emoji', (selection) => {
+      emojiInput.value = emojiInput.value + selection.emoji;
+    });
+
+    trigger.addEventListener('click', () => picker.togglePicker(trigger));
+  </script>
+</html>
